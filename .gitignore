@@ -8,7 +8,7 @@ __pycache__/
 
 database/database*
 
-.project_folder
-.test_config
+project_folder.txt
+test_config.py
 
 .venv
