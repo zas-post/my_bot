@@ -6,7 +6,7 @@ venv/
 .venv/
 __pycache__/
 
-database/
+database/database*
 
 .project_folder
 .test_config
