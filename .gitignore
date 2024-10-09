@@ -6,7 +6,8 @@ venv/
 .venv/
 __pycache__/
 
-database/database*
+database/!database.py
+database/database.*
 
 project_folder.txt
 test_config.py
