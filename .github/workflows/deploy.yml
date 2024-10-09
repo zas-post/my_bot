@@ -1,3 +1,5 @@
 name: Dploy Bot
 
-on: workflow_dispatch
+on:
+  push:
+    branches: [ "master" ]
