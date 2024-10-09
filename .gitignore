@@ -1,0 +1,14 @@
+.env
+
+.mypy_cache/
+.vscode/
+venv/
+.venv/
+__pycache__/
+
+database/
+
+.project_folder
+.test_config
+
+.venv
