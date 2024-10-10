@@ -54,5 +54,4 @@ jobs:
               --name bot_name \
               bot_image:latest
           EOF
-
-          
+        
