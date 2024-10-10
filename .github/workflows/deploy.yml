@@ -19,7 +19,7 @@ jobs:
       # Шаг 2. Сборка Docker образа на основе указанных инструкций (используем образ python:3.10-alpine3.20)
       - name: Build Docker Image
         run: |
-          docker build -t my-python-app:latest .
+          docker build -t bot_image:latest .  # Изменяем имя образа на bot_image
 
       # Шаг 3. Настройка SSH для доступа к серверу
       - name: Set up SSH
@@ -55,5 +55,3 @@ jobs:
               --name bot_name \
               bot_image:latest
           EOF
-  
-
