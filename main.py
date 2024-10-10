@@ -5,6 +5,8 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from config_data.config import Config, load_config
 
+# Импортируем функцию для инициализации базы данных
+from database.database import initialize_database, add_user
 
 from handlers import (
     start_handlers,
@@ -23,6 +25,12 @@ from handlers import (
 async def main():
     # Загружаем конфиг в переменную config
     config: Config = load_config()
+
+    # Инициализируем базу данных перед запуском бота
+    initialize_database()  # Добавленный вызов функции инициализации
+
+    # Устанавливаем идентификаторы администраторов в обработчике
+    start_handlers.set_admin_ids(config.tg_bot.admin_ids)
 
     # Инициализируем бот и диспетчер
     bot = Bot(

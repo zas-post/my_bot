@@ -14,7 +14,7 @@ DEFAULT_DB_FILE = "database/database.db"
 @dataclass
 class TgBot:
     token: str  # Токен для доступа к телеграм-боту
-    admin_id: list[int]  # Список ID администраторов
+    admin_ids: list[int]  # Список ID администраторов
 
 
 @dataclass
@@ -45,7 +45,7 @@ def load_config(path: str | None = None) -> Config:
         raise ValueError("Invalid BOT_TOKEN format in the environment variables.")
 
     # Загружаем список ID администраторов из переменной окружения
-    admin_ids = env.list("ADMIN_ID", [])
+    admin_ids = env.list("ADMIN_IDS", [])
 
     # Преобразование в целые числа и удаление пустых строк
     admin_ids_int = list(
@@ -57,7 +57,7 @@ def load_config(path: str | None = None) -> Config:
 
     # Дополнительная проверка: если список администраторов пуст
     if not admin_ids_int:
-        logger.error("Список ADMIN_ID пуст или содержит неверные значения.")
+        logger.error("Список ADMIN_IDS пуст или содержит неверные значения.")
         raise ValueError(
             "ADMIN_ID list is empty or invalid. Please check your .env configuration."
         )
@@ -70,7 +70,7 @@ def load_config(path: str | None = None) -> Config:
     return Config(
         tg_bot=TgBot(
             token=token,
-            admin_id=admin_ids_int,
+            admin_ids=admin_ids_int,
         ),
         db=DbConfig(db_file=db_file),
     )

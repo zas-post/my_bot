@@ -16,11 +16,12 @@ env = Env()
 env.read_env()
 
 # Получаем список админов из .env файла
-admin_ids = env.list("ADMIN_ID", subcast=int)
+admin_ids = env.list("ADMIN_IDS", subcast=int)
 
 # Инициализация логирования
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 # Декоратор для проверки прав администратора
 def admin_only(handler):
@@ -32,9 +33,11 @@ def admin_only(handler):
 
     return wrapper
 
+
 # Состояние FSM для управления рассылкой
 class BroadcastStates(StatesGroup):
     waiting_for_message = State()
+
 
 # Функция для рассылки сообщений пользователям
 async def broadcast_message_to_users(message, users, message_text):
@@ -43,12 +46,14 @@ async def broadcast_message_to_users(message, users, message_text):
     ]
     await asyncio.gather(*tasks, return_exceptions=True)
 
+
 # Хэндлер для команды /admin
 @router.message(Command(commands="admin"))
 @admin_only
 async def admin_panel(message: types.Message):
     keyboard = admin_panel_keyboard()
     await message.answer(LEXICON_RU["/admin"], reply_markup=keyboard)
+
 
 # Общая функция для обработки действий администратора
 async def process_admin_callback(callback: types.CallbackQuery, action: str):
@@ -81,17 +86,20 @@ async def process_admin_callback(callback: types.CallbackQuery, action: str):
             )
     await callback.answer()
 
+
 # Обработчик для кнопки "📊 Статистика"
 @router.callback_query(lambda c: c.data == "stats")
 @admin_only
 async def show_statistics(callback: types.CallbackQuery):
     await process_admin_callback(callback, "stats")
 
+
 # Обработчик для кнопки "👥 Список пользователей"
 @router.callback_query(lambda c: c.data == "user_list")
 @admin_only
 async def show_user_list(callback: types.CallbackQuery):
     await process_admin_callback(callback, "user_list")
+
 
 # Обработчик для кнопки "📤 Отправить рассылку"
 @router.callback_query(lambda c: c.data == "send_broadcast")
@@ -100,6 +108,7 @@ async def send_broadcast(callback: types.CallbackQuery, state: FSMContext):
     await callback.message.edit_text(LEXICON_RU["broadcast_prompt"], reply_markup=None)
     await callback.answer()
     await state.set_state(BroadcastStates.waiting_for_message)
+
 
 # Обработчик для получения сообщения рассылки от администратора
 @router.message(BroadcastStates.waiting_for_message)
@@ -118,6 +127,7 @@ async def get_broadcast_message(message: types.Message, state: FSMContext):
 
     await message.answer(LEXICON_RU["broadcast_successful"])
     await state.clear()
+
 
 # Обработчик для кнопки "❌ Закрыть"
 @router.callback_query(lambda callback: callback.data == "close")

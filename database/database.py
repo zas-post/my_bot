@@ -1,8 +1,12 @@
 import sqlite3
 from contextlib import closing
 
+
 # Путь к файлу базы данных
 DB_PATH = "database/database.db"
+
+# Загружаем конфигурацию, чтобы получить список admin_id
+# config = load_config()
 
 
 # Функция для инициализации базы данных и создания таблиц, если их еще нет
@@ -32,6 +36,7 @@ def add_user(
     user_id: int, username: str, first_name: str, last_name: str, is_admin: bool = False
 ):
     try:
+
         # Преобразуем логическое значение is_admin в целое число (1 для True и 0 для False)
         is_admin_int = int(is_admin)
 
