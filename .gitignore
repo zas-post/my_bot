@@ -8,6 +8,7 @@ __pycache__/
 
 database/!database.py
 database/database.db
+database/database.db_old
 database/database.sqbpro
 
 project_folder.txt
