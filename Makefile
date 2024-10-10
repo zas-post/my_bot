@@ -1,7 +1,7 @@
 build:
 	docker build -t bot_image .
 run:
-	docker run -it -d --env-file .env --restart=unless-stopped --name ebot_name bot_image
+	docker run -it -d --env-file .env --restart=unless-stopped --name bot_name bot_image
 stop:
 	docker stop bot_name
 attach:
