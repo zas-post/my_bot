@@ -1,12 +1,26 @@
-name: Dploy Bot
+name: Deploy My Bot to the server
 
 on:
   push:
     branches: [ "master" ]
+    # Allows you to run this workflow manually
+  workflow_dispatch:
 
 jobs:
   build:
+    name: deploy os
     runs-on: python:3.10-alpine3.20
-
+    
     steps:
-      - name: Deploy using ssh
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: whoami
+      
