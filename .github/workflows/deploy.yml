@@ -3,3 +3,7 @@ name: Dploy Bot
 on:
   push:
     branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: python:3.10-alpine3.20
