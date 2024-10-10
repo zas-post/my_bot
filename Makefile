@@ -6,7 +6,7 @@ stop:
 	docker stop bot_name
 attach:
 	docker attach bot_name
-dell_con:
+dellete_rm:
 	docker rm bot_name
-dell_img:
+dellete_rmi:
 	docker rmi bot_image
