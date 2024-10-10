@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # Запуск workflow при пуше в ветку main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -55,5 +56,4 @@ jobs:
               --name bot_name \
               bot_image:latest
           EOF
-        
-
+  
