@@ -26,7 +26,6 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Секрет для приватного ключа
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       # Шаг 4. Копирование собранного Docker образа на удаленный сервер
       - name: Copy Docker Image to Server
