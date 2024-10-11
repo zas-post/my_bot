@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GH_TOKEN }}  # Используем токен для доступа к репозиторию
+          token: ${{ secrets.GITHUB_TOKEN }}  # Используем токен для доступа к репозиторию
 
       # Шаг 2. Сборка Docker образа на основе указанных инструкций (используем образ python:3.10-alpine3.20)
       - name: Build Docker Image
