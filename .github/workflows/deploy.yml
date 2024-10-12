@@ -44,9 +44,14 @@ jobs:
             # Переходим в директорию проекта
             cd /home/my_bot
 
-            # Остановка текущего контейнера, если он запущен
-            if [ "$(docker ps -q -f name=bot_name)" ]; then
-              docker stop bot_name || true  # Остановить контейнер, если он запущен
+            # Проверяем, существует ли контейнер с именем bot_name
+            if [ "$(docker ps -aq -f name=bot_name)" ]; then
+              # Остановка текущего контейнера, если он запущен
+              if [ "$(docker ps -q -f name=bot_name)" ]; then
+                docker stop bot_name || true  # Остановить контейнер, если он запущен
+              fi
+
+              # Принудительно удалить контейнер
               docker rm -f bot_name || true  # Принудительно удалить контейнер, если он не удаляется
             fi
 
