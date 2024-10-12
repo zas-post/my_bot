@@ -32,7 +32,7 @@ jobs:
       # Шаг 4. Копирование собранного Docker образа на удаленный сервер
       - name: Copy Docker Image to Server
         run: |
-          docker save bot_image:latest | bzip2 | ssh -v -o StrictHostKeyChecking=no -o IdentityFile=none -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} 'bunzip2 | docker load'
+          docker save bot_image:latest | bzip2 | ssh -v -o StrictHostKeyChecking=no -o IdentityFile=none -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} 'bunzip2 | sudo docker load'
 
       # Шаг 5. Развертывание приложения на удаленном сервере с использованием собранного Docker образа
       - name: Deploy Application
