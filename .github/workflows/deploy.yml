@@ -46,8 +46,8 @@ jobs:
 
             # Остановка текущего контейнера, если он запущен
             if [ "$(docker ps -q -f name=bot_name)" ]; then
-              docker stop bot_name
-              docker rm bot_name  # Удаляем контейнер после остановки
+              docker stop bot_name || true  # Остановить контейнер, если он запущен
+              docker rm -f bot_name || true  # Принудительно удалить контейнер, если он не удаляется
             fi
 
             # Проверка наличия файла .env
