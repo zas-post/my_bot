@@ -50,6 +50,12 @@ jobs:
               docker rm bot_name  # Удаляем контейнер после остановки
             fi
 
+            # Проверка наличия файла .env
+            if [ ! -f .env ]; then
+              echo ".env file not found, exiting."
+              exit 1
+            fi
+
             # Запуск нового контейнера на основе собранного Docker образа
             docker run -it -d \
               --env-file .env \
