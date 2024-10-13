@@ -13,5 +13,6 @@ database/database.sqbpro
 
 project_folder.txt
 test_config.py
+send_env.sh
 
 .venv
