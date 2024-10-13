@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Bot README</title>
 </head>
 <body>
 
@@ -81,7 +80,7 @@ ADMIN_IDS=список_идентификаторов_админов</code></pre
 
 <hr>
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FEFFFA&width=435&lines=Code+status%3A" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=15&pause=1000&color=000000&vCenter=true&width=435&lines=Code+status%3A" alt="Typing SVG" /></a>
 [![Deploy to Server](https://github.com/zas-post/my_bot/actions/workflows/deploy.yml/badge.svg)](https://github.com/zas-post/my_bot/actions/workflows/deploy.yml)
 
 </body>
